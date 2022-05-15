@@ -8,7 +8,7 @@ resource "aws_instance" "ec2" {
   vpc_security_group_ids      = [aws_security_group.ec2_security_group.id]
   associate_public_ip_address = true
 
-  key_name                    = aws_key_pair.ec2_key_pair.key_name
+#  key_name                    = aws_key_pair.ec2_key_pair.key_name
 
   tags = {
     Name = var.ec2_name
@@ -54,7 +54,7 @@ resource "aws_security_group" "ec2_security_group" {
   }
 }
 
-resource "aws_key_pair" "ec2_key_pair" {
-  key_name   = var.ec2_ssh_key_name
-  public_key = file(var.ec2_ssh_public_key_path)
-}
+#resource "aws_key_pair" "ec2_key_pair" {
+#  key_name   = var.ec2_ssh_key_name
+#  public_key = file(var.ec2_ssh_public_key_path)
+#}

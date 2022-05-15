@@ -25,7 +25,7 @@ variable "ec2_security_group_description" {
 variable "ec2_ami" {
   description = "The Amazon Machine Image"
   type        = string
-  default     = "ami-04b9e92b5572fa0d1" # Ubuntu 18.04 LTS (64-bit x86)  Free Tier eligible
+  default     = "ami-09d56f8956ab235b3" # Ubuntu 22.04 LTS (64-bit x86)  Free Tier eligible
 }
 
 variable "ec2_instance_type" {
