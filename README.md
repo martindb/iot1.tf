@@ -15,7 +15,7 @@ tfenv use x.x.x
 4. Clone this repo
 ```
 git clone https://github.com/martindb/iot1.tf.git
-cd iot.tf
+cd iot1.tf
 ```
 5. Make the "terraform magic"
 ```
