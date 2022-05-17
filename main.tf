@@ -3,9 +3,13 @@ provider "aws" {
   region = var.region
 }
 
-# terraform {
-#   backend "s3" {}
-# }
+terraform {
+  backend "s3" {
+    region = "us-east-1"
+    bucket = "bucketmdb1"
+    key    = "terraform.tfstate"
+  }
+}
 
 module "vpc" {
   source = "./modules/vpc"
