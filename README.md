@@ -17,7 +17,8 @@ tfenv use x.x.x
 git clone https://github.com/martindb/iot1.tf.git
 cd iot1.tf
 ```
-5. Make the "terraform magic"
+5. Create a new S3 bucket (all default), change variables.tf to it's name.
+6. Make the "terraform magic"
 ```
 terraform init
 terraform plan
