@@ -1,6 +1,6 @@
 provider "aws" {
-#  profile = var.profile
-  region  = var.region
+  #  profile = var.profile
+  region = var.region
 }
 
 # terraform {
@@ -34,8 +34,8 @@ module "route_table" {
 module "ec2" {
   source = "./modules/ec2"
 
-  vpc_id                  = module.vpc.vpc_id
-  public_subnet_id        = module.public_subnet.public_subnet_id
+  vpc_id           = module.vpc.vpc_id
+  public_subnet_id = module.public_subnet.public_subnet_id
 
   ec2_ssh_key_name        = var.ec2_ssh_key_name
   ec2_ssh_public_key_path = var.ec2_ssh_public_key_path
