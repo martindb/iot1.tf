@@ -75,6 +75,15 @@ resource "aws_security_group" "ec2_security_group" {
   tags = {
     Name = var.ec2_security_group_name
   }
+
+  user_data = <<EOF
+#!/bin/bash
+
+echo "user_data bootstrap"
+sudo apt --yes install docker.io
+
+EOF
+
 }
 
 #resource "aws_key_pair" "ec2_key_pair" {
