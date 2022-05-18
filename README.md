@@ -20,7 +20,7 @@ cd iot1.tf
 5. Create a new S3 bucket (all default), change bucket in config.s3.tfbackend to it's name.
 6. Make the "terraform magic"
 ```
-terraform init -backend-config=config.s3.tfbackend
+terraform init -backend-config=./config.s3.tfbackend
 terraform plan
 terraform apply
 ```

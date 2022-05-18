@@ -1,7 +1,23 @@
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical
+}
+
 resource "aws_instance" "ec2" {
   count                       = var.ec2_should_be_created ? 1 : 0
 
-  ami                         = var.ec2_ami
+  ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.ec2_instance_type
 
   subnet_id                   = var.public_subnet_id
@@ -29,18 +45,25 @@ resource "aws_security_group" "ec2_security_group" {
   }
 
   ingress {
-    from_port   = 80
-    to_port     = 80
+    from_port   = 1880
+    to_port     = 1880
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port   = 443
-    to_port     = 443
+    from_port   = 1883
+    to_port     = 1883
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  # ingress {
+  #   from_port   = 443
+  #   to_port     = 443
+  #   protocol    = "tcp"
+  #   cidr_blocks = ["0.0.0.0/0"]
+  # }
 
   egress {
     from_port   = 0
