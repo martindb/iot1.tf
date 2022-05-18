@@ -34,6 +34,7 @@ resource "aws_instance" "ec2" {
 #!/bin/bash
 
 echo "user_data bootstrap"
+sudo apt update && 
 sudo apt --yes install docker.io
 
 EOF
