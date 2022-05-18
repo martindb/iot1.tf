@@ -10,12 +10,6 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "bucket" {
-  description = "S3 bucket to store tf state"
-  type        = string
-  default     = "bucketmdb1"
-}
-
 variable "ec2_ssh_key_name" {
   description = "The SSH Key Name"
   type        = string
