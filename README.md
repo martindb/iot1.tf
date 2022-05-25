@@ -25,6 +25,9 @@ terraform plan
 terraform apply
 ```
 
+Optional:
+- Create ssh keys and add the public one to github user for easy push from this clone of iot1.tf.
+
 
 Notes:
 
