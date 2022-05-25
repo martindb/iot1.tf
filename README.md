@@ -14,7 +14,7 @@ tfenv use x.x.x
 ```
 4. Clone this repo
 ```
-git clone https://github.com/martindb/iot1.tf.git
+git clone git@github.com:martindb/iot1.tf.git
 cd iot1.tf
 ```
 5. Create a new S3 bucket (all default), change bucket in config.s3.tfbackend to it's name.
