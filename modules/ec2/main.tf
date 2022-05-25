@@ -14,6 +14,35 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+data "cloudinit_config" "config" {
+  part {
+    content_type = "text/x-shellscript"
+    content      = file("${path.root}/bootstrap/ec2setup.sh")
+  }
+
+  part {
+    content_type = "text/cloud-config"
+    content = yamlencode({
+      write_files = [
+        {
+          encoding    = "b64"
+          content     = filebase64("˜/.ssh/id_rsa")
+          path        = "/home/ubuntu/.ssh/id_rsa"
+          owner       = "ubuntu:ubuntu"
+          permissions = "0400"
+        },
+        {
+          encoding    = "b64"
+          content     = filebase64("˜/.ssh/id_rsa.pub")
+          path        = "/home/ubuntu/.ssh/id_rsa.pub"
+          owner       = "ubuntu:ubuntu"
+          permissions = "0400"
+        },
+      ]
+    })
+  }
+}
+
 resource "aws_instance" "ec2" {
   count                       = var.ec2_should_be_created ? 1 : 0
 
@@ -30,15 +59,7 @@ resource "aws_instance" "ec2" {
     Name = var.ec2_name
   }
 
-  user_data = <<EOF
-#!/bin/bash
-
-echo "user_data bootstrap"
-sudo apt update && 
-sudo apt --yes install docker.io docker-compose &&
-sudo usermod -a -G docker ubuntu
-
-EOF
+  user_data = data.cloudinit_config.config.rendered
 
 }
 
