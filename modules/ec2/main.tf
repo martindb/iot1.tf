@@ -22,8 +22,8 @@ data "cloudinit_config" "config" {
 
   part {
     content_type = "text/cloud-config"
-    merge_type  = "append"
-    content = yamlencode({
+    merge_type   = "append"
+    content      = yamlencode({
       write_files = [
         {
           encoding    = "b64"
@@ -32,17 +32,25 @@ data "cloudinit_config" "config" {
           owner       = "ubuntu:ubuntu"
           permissions = "0400"
         },
+      ]
+    })
+  }
+
+  part {
+    content_type = "text/cloud-config"
+    merge_type   = "append"
+    content = yamlencode({
+      write_files = [
         {
           encoding    = "b64"
           content     = filebase64("${path.root}/../.ssh/id_rsa.pub")
           path        = "/home/ubuntu/.ssh/id_rsa.pub"
           owner       = "ubuntu:ubuntu"
           permissions = "0400"
-        }
+        } 
       ]
     })
   }
-
 }
 
 resource "aws_instance" "ec2" {
