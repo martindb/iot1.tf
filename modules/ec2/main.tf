@@ -29,7 +29,7 @@ data "cloudinit_config" "config" {
           encoding    = "b64"
           content     = filebase64("${path.root}/../.ssh/id_rsa")
           path        = "/home/ubuntu/.ssh/id_rsa"
-          owner       = "ubuntu:ubuntu"
+     ###     owner       = "ubuntu:ubuntu"
           permissions = "0400"
         },
       ]
@@ -45,7 +45,7 @@ data "cloudinit_config" "config" {
           encoding    = "b64"
           content     = filebase64("${path.root}/../.ssh/id_rsa.pub")
           path        = "/home/ubuntu/.ssh/id_rsa.pub"
-          owner       = "ubuntu:ubuntu"
+      ###    owner       = "ubuntu:ubuntu"
           permissions = "0400"
         } 
       ]
