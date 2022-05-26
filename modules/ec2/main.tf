@@ -22,6 +22,7 @@ data "cloudinit_config" "config" {
 
   part {
     content_type = "text/cloud-config"
+    merge_type   = "list(append)+dict(no_replace,recurse_list)+str()"
     content      = yamlencode({
       write_files = [
         {
@@ -37,6 +38,7 @@ data "cloudinit_config" "config" {
 
   part {
     content_type = "text/cloud-config"
+    merge_type   = "list(append)+dict(no_replace,recurse_list)+str()"
     content = yamlencode({
       write_files = [
         {
